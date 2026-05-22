@@ -1,5 +1,6 @@
 import csv
 from FuncionesPrograma import *
+
 paises_lista = []
 try:
     Datos = open("DatosPaises.csv", "r+",newline="")
@@ -14,23 +15,14 @@ except FileNotFoundError:
 except FileExistsError:
     print("no se pudo acceder al archivo")
 while True:
-    print(
-        "1.Agregar un pais\n" \
-        "2.Actualizar un pais\n" \
-        "3.Buscar un pais\n" \
-        "4.Filtrar Pais por tipo\n" \
-        "5.Ordenar paises\n" \
-        "6.Mostrar Estadisticas\n" \
-        "7.Salir"
-        )
-    opcion = input("que desea realizar:")
+    opcion = Menu()
     match opcion:
-        case "1":
+        case "Agregar un pais":
             Pais = Crear_Pais(paises_lista)
             if Pais != None:
                 Editor_Diccionarios.writerow(Pais)
                 paises_lista.append(Pais)
-        case "2": #nota: esto actualiza los diccionarios pero no el csv
+        case "Actualizar un pais":
             Pais_Buscar = Buscar_Pais(paises_lista)
             if Pais_Buscar != None:
                 Menu_de_cambios(Pais_Buscar,paises_lista)
@@ -40,19 +32,19 @@ while True:
                     Editor_Diccionarios.writeheader()
                     Editor_Diccionarios.writerows(paises_lista)
                     print("Pais actualizado")
-        case "3":
+        case "Buscar un pais":
             pass
-        case "4":
+        case "Filtrar Pais por tipo":
             pass
-        case "5":
+        case "Ordenar paises":
             pass
-        case "6":
+        case "Mostrar Estadisticas":
             pass
-        case "7":
+        case "Salir":
             print("saliendo")
             Datos.close()
             break
         case _:
-            print("opcio no disponible")
+            print("opcion no disponible")
             for i in range(1,len(paises_lista),1): #esto esta solo para ver, despues lo elimino
                 print(f"{i}-{paises_lista[i]}")
