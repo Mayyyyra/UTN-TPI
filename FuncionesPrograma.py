@@ -1,4 +1,5 @@
 from funciones import *
+
 def Crear_Pais(Lista):
     while True:
         Titulo = Es_Nombre("Nombre del nuevo pais (o escriba - para salir):",Lista)
