@@ -1,6 +1,5 @@
 import csv
 from FuncionesPrograma import *
-from busquedaparcial import *
 paises_lista = []
 try:
     Datos = open("DatosPaises.csv", "r+",newline="")
@@ -23,7 +22,7 @@ while True:
                 Editor_Diccionarios.writerow(Pais)
                 paises_lista.append(Pais)
         case "Actualizar un pais":
-            Pais_Buscar = Buscar_Pais(paises_lista)
+            Pais_Buscar = Busqueda_Actualizar(paises_lista)
             if Pais_Buscar != None:
                 Menu_de_cambios(Pais_Buscar,paises_lista)
                 with open("DatosPaises.csv", "w", newline="") as Datos:
@@ -33,13 +32,13 @@ while True:
                     Editor_Diccionarios.writerows(paises_lista)
                     print("Pais actualizado")
         case "Buscar un pais":
-            BusquedaParcial(paises_lista)
+            Busqueda_Pais(paises_lista)
         case "Filtrar Pais por tipo":
             pass
         case "Ordenar paises":
             pass
         case "Mostrar Estadisticas":
-            pass
+            Mostrar_Estadisticas(paises_lista)
         case "Salir":
             for i in range(0,len(paises_lista),1): #esto esta solo para ver, despues lo elimino
                 print(f"{i}-{paises_lista[i]}")

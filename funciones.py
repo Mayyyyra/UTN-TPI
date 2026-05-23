@@ -15,8 +15,7 @@ def Es_Numerico(Texto):
                 else:
                     return Comprobar
             except TypeError:
-                print("tipo erroneo")
-    
+                print("tipo erroneo")   
 def Es_Numerico2(Texto): #este es especifico para flotantes
     while True:
         try:
@@ -64,14 +63,14 @@ def Es_Nombre(Texto,Lista): #funcion especifica para el nombre de los paises, re
             except TypeError:
                 print("tipo erroneo")
 def Pausar():
-    input("precione cualquier tecla para continuar")
-def Menu():
+    input("presione cualquier tecla para continuar")
+def Menu(): #Menu principal
     opcion = questionary.select(message="Seleccioná:",choices=["Agregar un pais",
     "Actualizar un pais","Buscar un pais", "Filtrar Pais por tipo","Ordenar paises","Mostrar Estadisticas","Salir"]).ask()
     Limpiar_Consola()
     print(f"Elegiste: {opcion}")
     return opcion
-def Menu_de_cambios(Pais,Lista):
+def Menu_de_cambios(Pais,Lista): #Menu de cosas que se pueden cambiar de un pais
     while True:
         opcion = questionary.select(message="Seleccioná:",choices=["Cambiar Nombre",
     "Cambiar poblacion","Cambiar Superficie", "Cambiar Continente","Salir"]).ask()
@@ -124,3 +123,7 @@ def Menu_de_cambios(Pais,Lista):
                     break
             case "Salir":
                 break
+def Es_Continente():
+    opcion = questionary.select(message="Continente?:",choices=["America",
+    "Europa","Asia", "Africa","Oceania","Antartida","Salir"]).ask()
+    return opcion
