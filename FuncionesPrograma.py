@@ -108,8 +108,16 @@ def Mostrar_Estadisticas(Lista):
             Africa += 1
         elif Cont == "Oceania":
             Oceania += 1
-    print(f"el promedio de poblacion entre todos los paises es {sum(poblacion)/len(poblacion)}")
-    print(f"el promedio de superficie entre todos los paises es {sum(Superficie)/len(Superficie)}")
+        try:
+            promedioPob = sum(poblacion)/len(poblacion)
+        except ZeroDivisionError:
+            print("No es posible realizar el calculo de la poblacion")
+        try:
+            PromedioSup = sum(Superficie)/len(Superficie)
+        except ZeroDivisionError:
+            print("No es posible realizar el calculo de la poblacion")
+    print(f"el promedio de poblacion entre todos los paises es {promedioPob}")
+    print(f"el promedio de superficie entre todos los paises es {PromedioSup}")
     print(f"Continentes en America {America}")
     print(f"Continentes en Europa {Europa}")
     print(f"Continentes en Asia {Asia}")

@@ -34,7 +34,7 @@ def Verificar_Existencia(Verificar,Lista):
     return True
 def Es_Texto(Texto):
     while True:
-        Comprobar = input(Texto).capitalize()
+        Comprobar = input(Texto).strip().capitalize()
         if Comprobar == "-":
             return Comprobar
         else:
@@ -47,7 +47,7 @@ def Es_Texto(Texto):
                 print("tipo erroneo")
 def Es_Nombre(Texto,Lista): #funcion especifica para el nombre de los paises, revisa tambien si esta en un dic
     while True:
-        Comprobar = input(Texto).capitalize()
+        Comprobar = input(Texto).strip().capitalize()
         if Comprobar == "-":
             return Comprobar
         else:
