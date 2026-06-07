@@ -117,11 +117,90 @@ def Mostrar_Estadisticas(Lista):
         except ZeroDivisionError:
             print("No es posible realizar el calculo de la poblacion")
     print(f"el promedio de poblacion entre todos los paises es {promedioPob}")
-    print(f"el promedio de superficie entre todos los paises es {PromedioSup}")
+    print(f"el promedio de superficie entre todos los paises es {PromedioSup} km²")
     print(f"Continentes en America {America}")
     print(f"Continentes en Europa {Europa}")
     print(f"Continentes en Asia {Asia}")
     print(f"Continentes en Africa {Africa}")
     print(f"Continentes en Oceania {Oceania}")
     print(f"el pais con mayor poblacion es {mayor_pais_nom} con {mayor_pais_pob} habitantes")
+    Pausar()
+def filtrar_paises(lista_paises):
+    """Menú secundario para filtrar el dataset bajo diferentes criterios."""
+    if not lista_paises:
+        print("No hay datos cargados para filtrar.")
+        return
+    print("\n--- OPCIONES DE FILTRADO ---")
+    opcion = questionary.select(message="Seleccioná:",choices=[
+    "Por Continente","Por Rango de Población", "Por Rango de Superficie"]).ask()
+    resultados = []
+    if opcion == "Por Continente":
+        Continente = Es_Texto("Ingrese el continente a filtrar: ").lower()
+        for p in lista_paises:
+            if p["Continente"].lower() == Continente:
+                resultados.append(p)
+
+    elif opcion == "Por Rango de Población":
+        min_pob = Es_Numerico("Ingrese población mínima: ")
+        max_pob = Es_Numerico("Ingrese población máxima: ")
+        for p in lista_paises:
+            if min_pob <= p["Poblacion"] <= max_pob:
+                resultados.append(p)
+
+    elif opcion == "Por Rango de Superficie":
+        min_sup = Es_Numerico("Ingrese superficie mínima (km²): ")
+        max_sup = Es_Numerico("Ingrese superficie máxima (km²): ")
+        for p in lista_paises:
+            if min_sup <= p["Superficie"] <= max_sup:
+                resultados.append(p)
+    else:
+        print("Opción inválida.")
+        return
+
+    if resultados:
+        print(f"\nSe encontraron {len(resultados)} registros:")
+        for p in resultados:
+            print(f"- {p['Pais']} ({p['Continente']}) | Pob: {p['Poblacion']} | Sup: {p['Superficie']} km²")
+    else:
+        print("Ningún país cumple con los criterios ingresados.")
+    Pausar()
+def ordenar_paises(lista_paises):
+    """Ordena la lista utilizando el método de ordenamiento Burbuja (Bubble Sort)."""
+    if not lista_paises:
+        print("No hay datos para ordenar.")
+        return
+
+    print("\n--- ORDENAR PAÍSES ---")
+    # print("Criterios: 1. Nombre | 2. Población | 3. Superficie")
+    # criterio_opc = input("Seleccione criterio (1-3): ")
+    clave = questionary.select(message="Seleccioná:",choices=["Pais","Poblacion","Superficie"]).ask()
+    print("Sentido: 1. Ascendente | 2. Descendente")
+    sentido_opc = input("Seleccione sentido (1-2): ")
+
+    descendente = (sentido_opc == "2")
+
+    
+    lista_ordenada = list(lista_paises)
+    n = len(lista_ordenada)
+
+    
+    for i in range(n):
+        for j in range(0, n - i - 1):
+            val1 = lista_ordenada[j][clave]
+            val2 = lista_ordenada[j + 1][clave]
+            
+            
+            if isinstance(val1, str):
+                val1 = val1.lower()
+                val2 = val2.lower()
+
+            condicion = val1 > val2 if not descendente else val1 < val2
+            
+            if condicion:
+                
+                lista_ordenada[j], lista_ordenada[j + 1] = lista_ordenada[j + 1], lista_ordenada[j]
+
+    print("\n--- LISTA ORDENADA ---")
+    for p in lista_ordenada:
+        print(f"- {p['Pais']} | Pob: {p['Poblacion']} | Sup: {p['Superficie']} km² | Continente: {p['Continente']}")
     Pausar()

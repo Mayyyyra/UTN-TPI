@@ -20,6 +20,7 @@ while True:
             Pais = Crear_Pais(paises_lista)
             if Pais != None:
                 Editor_Diccionarios.writerow(Pais)
+                Datos.flush()
                 paises_lista.append(Pais)
         case "Actualizar un pais":
             Pais_Buscar = Busqueda_Actualizar(paises_lista)
@@ -30,18 +31,17 @@ while True:
                     Editor_Diccionarios = csv.DictWriter(Datos, fieldnames=Columnas)
                     Editor_Diccionarios.writeheader()
                     Editor_Diccionarios.writerows(paises_lista)
+                    Datos.flush()
                     print("Pais actualizado")
         case "Buscar un pais":
             Busqueda_Pais(paises_lista)
         case "Filtrar Pais por tipo":
-            pass
+            filtrar_paises(paises_lista)
         case "Ordenar paises":
-            pass
+            ordenar_paises(paises_lista)
         case "Mostrar Estadisticas":
             Mostrar_Estadisticas(paises_lista)
         case "Salir":
-            for i in range(0,len(paises_lista),1): #esto esta solo para ver, despues lo elimino
-                print(f"{i}-{paises_lista[i]}")
             print("saliendo")
             Datos.close()
             break
