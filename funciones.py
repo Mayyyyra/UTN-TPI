@@ -45,7 +45,7 @@ def Es_Texto(Texto):
                     return Comprobar
             except TypeError:
                 print("tipo erroneo")
-def Es_Nombre(Texto,Lista): #funcion especifica para el nombre de los paises, revisa tambien si esta en un dic
+def Es_Nombre(Texto,Lista): #funcion especifica paral nombre de los paises, revisa tambien si esta en un dic
     while True:
         Comprobar = input(Texto).strip().capitalize()
         if Comprobar == "-":

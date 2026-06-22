@@ -135,7 +135,7 @@ def filtrar_paises(lista_paises):
     "Por Continente","Por Rango de Población", "Por Rango de Superficie"]).ask()
     resultados = []
     if opcion == "Por Continente":
-        Continente = Es_Texto("Ingrese el continente a filtrar: ").lower()
+        Continente = Es_Continente().lower()
         for p in lista_paises:
             if p["Continente"].lower() == Continente:
                 resultados.append(p)

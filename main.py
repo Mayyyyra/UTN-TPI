@@ -44,4 +44,4 @@ while True:
         case "Salir":
             print("saliendo")
             Datos.close()
-            break
+            break 
